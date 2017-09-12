@@ -7,7 +7,10 @@ task main()
 {
 	while(sensorValue(button) == 1)
 	{
-	motor(left) = 50;
-	motor(right) = 50;
-}
+		motor(left) = 50;
+		motor(right) = 50;
+	}
+	motor(left) = 100;
+	motor(right) = -100;
+
 }
