@@ -12,10 +12,10 @@ task main()
 		while(sensorValue(sonar) >= 30)
 		{
 			motor(left)=60;
-			motor(right)=60;
+			motor(right)=55;
 		}
 		motor(left)=60;
-		motor(right)=20;
+		motor(right)=-25;
 
 	}
 }
