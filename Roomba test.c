@@ -1,4 +1,5 @@
 #pragma config(Sensor, S1,     button1,        sensorEV3_Touch)
+#pragma config(Sensor, S2,     sonar2,         sensorEV3_Ultrasonic)
 #pragma config(Sensor, S3,     sonar,          sensorEV3_Ultrasonic)
 #pragma config(Sensor, S4,     button2,        sensorEV3_Touch)
 #pragma config(Motor,  motorB,          left,          tmotorEV3_Large, PIDControl, encoder)
@@ -9,17 +10,12 @@ task main()
 {
 	while(true)
 	{
-		while(sensorValue(sonar) >= 30)
+		while(sensorValue(sonar) >= 40 && sensorValue(sonar2) >= 40)
 		{
 			motor(left)=60;
 			motor(right)=59;
 		}
 			motor(left)= 60;
-			motor(right)= -30;
-			if(button1 == 1)
-			{
-				motor(left)=60;
-				motor(right)=10
-			}
+			motor(right)= -35;
 	}
 }
