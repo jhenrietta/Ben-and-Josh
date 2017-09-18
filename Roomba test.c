@@ -7,18 +7,19 @@
 
 task main()
 {
-	int turnDirec = 0;
 	while(true)
 	{
-		while(SensorValue(sonar) >= 30)
+		while(sensorValue(sonar) >= 30)
 		{
-
 			motor(left)=60;
 			motor(right)=59;
-
 		}
-		motor(left)=60;
-		motor(right)=-30;
-
+			motor(left)= 60;
+			motor(right)= -30;
+			if(button1 == 1)
+			{
+				motor(left)=60;
+				motor(right)=10
+			}
 	}
 }
