@@ -23,6 +23,7 @@ task main()
 			{
 				motor(left)= 60;
 				motor(right)= -25;
+				wait1Msec(175);
 				mode = 2;
 			}
 		}
@@ -30,10 +31,27 @@ task main()
 		if(mode == 2)
 		{
 			motor(left) = 60;
-			motor(right) = 59;
+			motor(right) = 58;
+			wait1Msec(10000);
+			mode = 3;
+		}
+
+		if(mode == 3)
+		{
+			motor(left) = 60;
+			motor(right) = 60;
+
+			if(sensorValue(sonar) <= 30 || sensorValue(sonar2) <= 30)
+			{
+				motor(left)= 60;
+				motor(right)= -25;
+				wait1Msec(175);
+				mode = 2;
+			}
 			wait1Msec(10000);
 			mode = 1;
 		}
+
 		/*
 		while(sensorValue(sonar) >= 30 && sensorValue(sonar2) >= 30)
 		{
