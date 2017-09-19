@@ -8,14 +8,39 @@
 
 task main()
 {
+	int mode = 1;
+	//int SPIRAL = 1;
+	//int WALL = 2;
+
 	while(true)
 	{
+
+		if(mode == 1)
+		{
+			motor(left) = 60;
+			motor(right) = 50;
+			if(sensorValue(sonar) <= 30 || sensorValue(sonar2) <= 30)
+			{
+				motor(left)= 60;
+				motor(right)= -25;
+				mode = 2;
+			}
+		}
+
+		if(mode == 2)
+		{
+			motor(left) = 60;
+			motor(right) = 59;
+			wait1Msec(10000);
+			mode = 1;
+		}
+		/*
 		while(sensorValue(sonar) >= 30 && sensorValue(sonar2) >= 30)
 		{
-			motor(left)=60;
-			motor(right)=59;
+		motor(left)=60;
+		motor(right)=59;
 		}
-			motor(left)= 60;
-			motor(right)= -15;
+		motor(left)= 60;
+		motor(right)= -25; */
 	}
 }
