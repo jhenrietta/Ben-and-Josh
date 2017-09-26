@@ -37,16 +37,16 @@ task main()
 
 		}
 
-		while(mode == 2);
+		while(mode == 2)
 		{
-			motor(left) = 60;
-			motor(right) = 58.5;
 
-			while(sensorValue(sonar) <= 30 || sensorValue(sonar2) <= 30)
+			while(sensorValue(sonar) >= 30 && sensorValue(sonar2) >= 30)
 			{
 				motor(left) = 60;
-				motor(right) = -25;
+				motor(right) = 58;
 			}
+			motor(left) = 60;
+			motor(right) = -25;
 
 			if((getMotorEncoder(left)) + (getMotorEncoder(right)) >= 20000)
 			{
@@ -58,7 +58,7 @@ task main()
 
 		}
 
-		while(mode == 3);
+		while(mode == 3)
 		{
 			motor(left) = 60;
 			motor(right) = 60;
