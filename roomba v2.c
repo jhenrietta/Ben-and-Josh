@@ -43,12 +43,10 @@ task main()
 			motor(left) = 60;
 			motor(right) = 58;
 
-			while(sensorValue(sonar) <= 30 || sensorValue(sonar2) <= 30)
+			while(sensorValue(sonar) <= 40 || sensorValue(sonar2) <= 40)
 			{
 				motor(left) = 60;
 				motor(right) = -30;
-				resetMotorEncoder(left);
-				resetMotorEncoder(right);
 			}
 
 			if((getMotorEncoder(left)) + (getMotorEncoder(right)) >= 10000)
