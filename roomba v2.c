@@ -10,4 +10,76 @@ task main()
 {
 	int mode = 1;
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+	resetMotorEncoder(left);
+	resetMotorEncoder(right);
+
+	while(true)
+	{
+
+		while(mode == 1)
+		{
+			motor(left) = 60;
+			motor(right) = 50;
+
+			if(sensorValue(sonar) <= 30 || sensorValue(sonar2) <= 30)
+			{
+				resetMotorEncoder(left);
+				resetMotorEncoder(right);
+				mode = 2;
+			}
+
+			if((getMotorEncoder(left)) + (getMotorEncoder(right)) >= 20000)
+			{
+				resetMotorEncoder(left);
+				resetMotorEncoder(right);
+				mode = 3;
+			}
+
+		}
+
+		while(mode == 2)
+		{
+
+			motor(left) = 60;
+			motor(right) = 58;
+
+			while(sensorValue(sonar) <= 30 || sensorValue(sonar2) <= 30)
+			{
+				motor(left) = 60;
+				motor(right) = -30;
+				resetMotorEncoder(left);
+				resetMotorEncoder(right);
+			}
+
+			if((getMotorEncoder(left)) + (getMotorEncoder(right)) >= 10000)
+			{
+				resetMotorEncoder(left);
+				resetMotorEncoder(right);
+				mode = 1;
+			}
+
+
+		}
+
+		while(mode == 3)
+		{
+			motor(left) = 60;
+			motor(right) = 60;
+
+			if(sensorValue(sonar) <= 30 || sensorValue(sonar2) <= 30)
+			{
+				resetMotorEncoder(left);
+				resetMotorEncoder(right);
+				mode = 2;
+			}
+
+			if((getMotorEncoder(left)) + (getMotorEncoder(right)) >= 20000)
+			{
+				resetMotorEncoder(left);
+				resetMotorEncoder(right);
+				mode = 1;
+			}
+		}
+
+	}
+}
