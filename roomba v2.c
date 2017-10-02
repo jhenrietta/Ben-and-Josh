@@ -47,16 +47,15 @@ task main()
 			{
 				motor(left) = 60;
 				motor(right) = -30;
-				wait1Msec(170);
+				wait1Msec(75);
 			}
 
-			if((getMotorEncoder(left)) + (getMotorEncoder(right)) >= 10000)
+			if((getMotorEncoder(left)) + (getMotorEncoder(right)) >= 20000)
 			{
 				resetMotorEncoder(left);
 				resetMotorEncoder(right);
 				mode = 1;
 			}
-
 
 		}
 
