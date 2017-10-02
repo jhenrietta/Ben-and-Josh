@@ -10,34 +10,43 @@ task main()
 {
 	int mode = 1;
 
+	int spiral = 1;
+	int wallFollow = 2;
+  int straight = 3;
+
+  int spiralChange = 40;
+
 	resetMotorEncoder(left);
 	resetMotorEncoder(right);
 
 	while(true)
 	{
 
-		while(mode == 1)
+		while(mode == spiral)
 		{
 			motor(left) = 60;
-			motor(right) = 50;
+			motor(right) = spiralChange;
+
+			spiralChange = spiralChange + 1;
+			wait1Msec(700);
 
 			if(sensorValue(sonar) <= 30 || sensorValue(sonar2) <= 30)
 			{
 				resetMotorEncoder(left);
 				resetMotorEncoder(right);
-				mode = 2;
+				mode = wallFollow;
 			}
 
-			if((getMotorEncoder(left)) + (getMotorEncoder(right)) >= 20000)
+			if( ((getMotorEncoder(left)) + (getMotorEncoder(right)) >= 40000) || (spiralChange >= 59))
 			{
 				resetMotorEncoder(left);
 				resetMotorEncoder(right);
-				mode = 3;
+				mode = straight;
 			}
 
 		}
 
-		while(mode == 2)
+		while(mode == wallFollow)
 		{
 
 			motor(left) = 60;
@@ -47,19 +56,22 @@ task main()
 			{
 				motor(left) = 60;
 				motor(right) = -30;
-				wait1Msec(75);
+				wait1Msec(70);
 			}
 
 			if((getMotorEncoder(left)) + (getMotorEncoder(right)) >= 20000)
 			{
 				resetMotorEncoder(left);
 				resetMotorEncoder(right);
-				mode = 1;
+				motor(left) = 60;
+				motor(right) = -20;
+				wait1Msec(700);
+				mode = straight;
 			}
 
 		}
 
-		while(mode == 3)
+		while(mode == straight)
 		{
 			motor(left) = 60;
 			motor(right) = 60;
@@ -68,14 +80,15 @@ task main()
 			{
 				resetMotorEncoder(left);
 				resetMotorEncoder(right);
-				mode = 2;
+				mode = wallFollow;
 			}
 
 			if((getMotorEncoder(left)) + (getMotorEncoder(right)) >= 20000)
 			{
 				resetMotorEncoder(left);
 				resetMotorEncoder(right);
-				mode = 1;
+				spiralChange = 40;
+				mode = spiral;
 			}
 		}
 
