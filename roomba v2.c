@@ -30,7 +30,7 @@ task main()
 			spiralChange = spiralChange + 0.70;
 			wait1Msec(700);
 
-			if(sensorValue(sonar) <= 30 || sensorValue(sonar2) <= 30)
+			if(SensorValue(sonar) <= 30 || SensorValue(sonar2) <= 30)
 			{
 				resetMotorEncoder(left);
 				resetMotorEncoder(right);
@@ -49,17 +49,17 @@ task main()
 		while(mode == wallFollow)
 		{
 
-			motor(left) = 45;
+			motor(left) = 35;
 			motor(right) = 60;
 
-			while(sensorValue(sonar) <= 20 || sensorValue(sonar2) <= 20)
+			while(SensorValue(sonar) <= 20 || SensorValue(sonar2) <= 20)
 			{
 				motor(left) = 60;
 				motor(right) = -30;
-				wait1Msec(360);
+				wait1Msec(500);
 				motor(left) = 60;
 				motor(right) = 40;
-				wait1Msec(400);
+				wait1Msec(300);
 			}
 
 			if((getMotorEncoder(left)) + (getMotorEncoder(right)) >= 25000)
@@ -68,7 +68,7 @@ task main()
 				resetMotorEncoder(right);
 				motor(left) = 60;
 				motor(right) = -20;
-				wait1Msec(750);
+				wait1Msec(450);
 				mode = straight;
 			}
 
@@ -79,7 +79,7 @@ task main()
 			motor(left) = 60;
 			motor(right) = 60;
 
-			if(sensorValue(sonar) <= 30 || sensorValue(sonar2) <= 30)
+			if(SensorValue(sonar) <= 30 || SensorValue(sonar2) <= 30)
 			{
 				resetMotorEncoder(left);
 				resetMotorEncoder(right);
